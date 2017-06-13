@@ -1,0 +1,7 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+rclone:
+  binary_dir: /usr/bin
+  manpage_dir: /usr/local/share/man/man1
+  tmp_dir: /tmp/rclone_setup
+  version: 1.36

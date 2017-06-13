@@ -1,0 +1,3 @@
+rclone:
+  lookup:
+    version: 1.36
