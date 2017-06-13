@@ -13,8 +13,6 @@ rclone-zip:
   archive.extracted:
     - name: {{ rclone.tmp_dir }}
     - source: https://github.com/ncw/rclone/releases/download/v{{ rclone.version }}/rclone-v{{ rclone.version }}-linux-amd64.zip
-    - user: root
-    - group: root
     - skip_verify: True
     - if_missing: {{ tmp_path }}
 
