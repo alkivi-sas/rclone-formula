@@ -2,17 +2,24 @@
 # vim: ft=sls
 
 {% from "rclone/map.jinja" import rclone with context %}
-{% set tmp_path = rclone.tmp_dir + '/rclone-v' + rclone.version|string + '-linux-amd64' %}
+
+{% set arch = grains.get('osarch') %}
+{% if arch == 'armhf' %}
+{% set arch = 'arm' %}
+{% endif %}
+
+{% set tmp_path = rclone.tmp_dir + '/rclone-v' + rclone.version|string + '-linux-' + arch %}
 
 rclone-temp-dir:
   file.directory:
-    - name: {{ rclone.tmp_dir }}
+    - name: {{ tmp_path }}
+    - makedirs: True
     - mode: 0775
 
 rclone-zip:
   archive.extracted:
     - name: {{ rclone.tmp_dir }}
-    - source: https://github.com/ncw/rclone/releases/download/v{{ rclone.version }}/rclone-v{{ rclone.version }}-linux-amd64.zip
+    - source: https://github.com/ncw/rclone/releases/download/v{{ rclone.version }}/rclone-v{{ rclone.version }}-linux-{{ arch }}.zip
     - skip_verify: True
     - if_missing: {{ tmp_path }}
 
