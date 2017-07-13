@@ -15,6 +15,10 @@
     - makedirs: True
     - mode: 0775
 
+rclone-man-db:
+  pkg.installed:
+    - name: man-db
+
 rclone-zip:
   archive.extracted:
     - name: {{ rclone.tmp_dir }}
@@ -40,6 +44,7 @@ rclone-manpage:
     - user: root
     - group: root
     - require:
+      - pkg: rclone-man-db
       - archive: rclone-zip
 
 rclone-update-manpage:
