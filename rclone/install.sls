@@ -10,9 +10,8 @@
 
 {% set tmp_path = rclone.tmp_dir + '/rclone-v' + rclone.version|string + '-linux-' + arch %}
 
-rclone-temp-dir:
+{{ rclone.tmp_dir }}:
   file.directory:
-    - name: {{ tmp_path }}
     - makedirs: True
     - mode: 0775
 
