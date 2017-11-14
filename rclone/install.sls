@@ -33,6 +33,8 @@ rclone-binary:
     - mode: 0755
     - user: root
     - group: root
+    - force: True
+    - unless: diff {{ tmp_path }}/rclone {{ rclone.binary_dir }}/rclone
     - require:
       - archive: rclone-zip
 
@@ -43,6 +45,8 @@ rclone-manpage:
     - mode: 0755
     - user: root
     - group: root
+    - force: True
+    - unless: diff {{ tmp_path }}/rclone.1 {{ rclone.manpage_dir}}/rclone.1
     - require:
       - pkg: rclone-man-db
       - archive: rclone-zip
